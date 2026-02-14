@@ -4,7 +4,7 @@ export type Profile = {
   createdAt: string
 }
 
-export const demoProfiles: Profile[] = [
+export const profiles: Profile[] = [
   {
     id: "demo-1",
     name: "Player 1",
