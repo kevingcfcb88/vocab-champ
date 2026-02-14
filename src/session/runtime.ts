@@ -3,6 +3,9 @@ import { ROUNDS } from "../rounds/types"
 import type { RoundType } from "../rounds/types"
 import type { SessionConfig } from "../data/session"
 import type { VocabWord } from "../data/words"
+import type { RoundDefinition } from "../rounds/types"
+import type { RoundState } from "../rounds/runtime"
+
 
 export type SessionState = {
   roundIndex: number
@@ -37,4 +40,18 @@ export function nextRound(state: SessionState): SessionState | null {
     roundIndex: nextIndex,
     currentWords: pickWords(state.wordsPerRound),
   }
+}
+
+export function getCurrentRound(
+  state: SessionState
+): RoundDefinition {
+  const roundType = state.rounds[state.roundIndex]
+
+  const round = ROUNDS.find(r => r.type === roundType)
+
+  if (!round) {
+    throw new Error(`Round definition not found for ${roundType}`)
+  }
+
+  return round
 }
