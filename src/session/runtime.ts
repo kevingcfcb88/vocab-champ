@@ -42,16 +42,14 @@ export function nextRound(state: SessionState): SessionState | null {
   }
 }
 
-export function getCurrentRound(
-  state: SessionState
-): RoundDefinition {
+export function getCurrentRound(state: SessionState): RoundDefinition {
   const roundType = state.rounds[state.roundIndex]
+  const def = ROUNDS[roundType]
 
-  const round = ROUNDS.find(r => r.type === roundType)
-
-  if (!round) {
+  if (!def) {
     throw new Error(`Round definition not found for ${roundType}`)
   }
 
-  return round
+  return def
 }
+
