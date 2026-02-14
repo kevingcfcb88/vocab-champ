@@ -1,7 +1,20 @@
 import type { RoundType } from "../rounds/types"
+import type { VocabWord } from "../data/words"
 
-export type SessionConfig = {
-  profileId: string
+export type RoundState = {
+  roundType: RoundType
+  words: VocabWord[]
   wordsPerRound: number
-  enabledRounds: RoundType[]
+  currentWordIndex: number
+  completed: boolean
+}
+
+export type SessionState = {
+  profileId: string
+
+  rounds: RoundState[]
+  currentRoundIndex: number
+
+  startedAt: number
+  finishedAt?: number
 }
