@@ -12,7 +12,7 @@ type Props = {
 export function SessionSetup({ onStart }: Props) {
   const [profileId, setProfileId] = useState(profiles[0].id)
   const [wordsPerRound, setWordsPerRound] = useState(2)
-  const [enabledRounds, setEnabledRounds] = useState<RoundType[]>(
+  const [enabledRounds] = useState<RoundType[]>(
     Object.keys(ROUNDS) as RoundType[]
 )      
 
