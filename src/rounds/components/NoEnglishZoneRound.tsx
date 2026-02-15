@@ -1,6 +1,5 @@
 import { useState } from "react"
 import type { VocabWord } from "../../data/words"
-import { interpretNoEnglishZone } from "../../ai/interpreter"
 import { callAI } from "../../ai/client"
 import { noEnglishZonePrompt } from "../../ai/prompts"
 
@@ -22,8 +21,6 @@ export function NoEnglishZoneRound({ word, onSuccess }: Props) {
     noEnglishZonePrompt(word.word, answer)
   )
 
-  console.log("AI result:", result)
-
   if (!result){
     setFeedback("⚠️ Something went wrong, try again")
   }
@@ -32,7 +29,8 @@ export function NoEnglishZoneRound({ word, onSuccess }: Props) {
 
     if (result === 'CORRECT') {
       onSuccess();
-      setFeedback(result)
+      setFeedback("✅ CORRECT");
+      setAnswer("");
     } 
     else if (result === 'INCORRECT') {
       setFeedback("❌ Incorrect, try again")

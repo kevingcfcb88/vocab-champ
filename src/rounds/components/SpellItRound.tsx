@@ -8,43 +8,22 @@ type Props = {
 
 export function SpellItRound({ word, onSuccess }: Props) {
   const [value, setValue] = useState("")
-  const [error, setError] = useState<string | null>(null)
-
-  const checkAnswer = () => {
-    const normalizedInput = value.trim().toLowerCase()
-    const normalizedWord = word.word.toLowerCase()
-
-    if (normalizedInput === normalizedWord) {
-      onSuccess()
-    } else {
-      setError("Not quite. Try again.")
-    }
-  }
 
   return (
     <div>
-      <p>Spell the word: {word.word.toLowerCase()} </p>
-
-      {/* optional hint */}
-      {word.translation && (
-        <p><em>Hint: {word.translation}</em></p>
-      )}
+      <p>Spell the word:</p>
+      <h2>{word.word}</h2>
 
       <input
         value={value}
         onChange={e => setValue(e.target.value)}
         placeholder="Type the word"
+        style={{ marginRight: 8 }}
       />
 
       <div style={{ marginTop: 8 }}>
-        <button onClick={checkAnswer}>
-          Check
-        </button>
+        <button onClick={onSuccess}>Next Word ➡️</button>
       </div>
-
-      {error && (
-        <p style={{ color: "red" }}>{error}</p>
-      )}
     </div>
   )
 }

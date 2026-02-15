@@ -29,7 +29,7 @@ export function ListenAndChooseRound({ word, options, onSuccess }: Props) {
       {word.audioUrl && (
         <audio controls src={word.audioUrl} />
       )}
-
+      <p> Definition: {word.hints}</p>
       <ul>
         {shuffledOptions.map(option => (
           <li key={option}>

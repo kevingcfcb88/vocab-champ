@@ -1,5 +1,5 @@
 import type { SessionState } from "../session/runtime"
-import { getCurrentRound, nextRound } from "../session/runtime"
+import { getCurrentRound, nextWordOrRound } from "../session/runtime"
 import { NoEnglishZoneRound } from "../rounds/components/NoEnglishZoneRound"
 import { SentenceMasterRound } from "../rounds/components/SentenceMasterRound"
 import { PlaceholderRound } from "../rounds/components/PlaceholderRound"
@@ -70,10 +70,10 @@ function renderRound(
 
 export function RoundRunner({ state, onStateChange }: Props) {
   const round = getCurrentRound(state)
-  const currentWord = state.currentWords[0]
+const currentWord = state.currentWords[state.wordIndex]
   const options = state.currentWords.map(w => w.word)
   const handleNext = () => {
-    onStateChange(nextRound(state))
+    onStateChange(nextWordOrRound(state))
   }
 
   return (

@@ -11,7 +11,7 @@ type Props = {
 
 export function SessionSetup({ onStart }: Props) {
   const [profileId, setProfileId] = useState(profiles[0].id)
-  const [wordsPerRound, setWordsPerRound] = useState(5)
+  const [wordsPerRound, setWordsPerRound] = useState(2)
   const [enabledRounds, setEnabledRounds] = useState<RoundType[]>(
     Object.keys(ROUNDS) as RoundType[]
 )      
@@ -58,7 +58,7 @@ export function SessionSetup({ onStart }: Props) {
         Words per round: {wordsPerRound}
         <input
           type="range"
-          min={5}
+          min={2}
           max={VOCABULARY.length}
           value={wordsPerRound}
           onChange={e => setWordsPerRound(Number(e.target.value))}
@@ -78,7 +78,7 @@ export function SessionSetup({ onStart }: Props) {
 
         return (
             <label key={round}>
-            ...
+            <br />
             {definition.label} ({definition.points} pts)
             </label>
         )
