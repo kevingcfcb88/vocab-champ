@@ -19,7 +19,7 @@ export function sentenceMasterPrompt(
   sentence: string
 ) {
   return `
-Check if the sentence correctly uses the word.
+Check if the sentence correctly uses the word. Be permisive and focus on whether the meaning of the word is clear, rather than strict grammar.
 
 Word: "${word}"
 Sentence: "${sentence}"

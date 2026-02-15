@@ -2,7 +2,6 @@ import type { RoundType } from "../rounds/types"
 import type { VocabWord } from "./words"
 
 export type SessionConfig = {
-  profileId: string
   wordsPerRound: number
   enabledRounds: RoundType[]
 }
@@ -18,7 +17,6 @@ export type RoundState = {
 }
 
 export type SessionState = {
-  profileId: string
   currentRoundIndex: number
   rounds: RoundState[]
 }

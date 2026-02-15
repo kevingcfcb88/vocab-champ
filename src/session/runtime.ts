@@ -57,7 +57,7 @@ export function nextWordOrRound(state: SessionState): SessionState | null {
 
 export function getCurrentRound(state: SessionState): RoundDefinition {
   const roundType = state.rounds[state.roundIndex]
-  //const roundType = state.rounds[2]
+  //const roundType = state.rounds[3]
   const def = ROUNDS[roundType]
 
   if (!def) {

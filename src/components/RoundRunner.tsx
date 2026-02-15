@@ -79,7 +79,6 @@ const currentWord = state.currentWords[state.wordIndex]
   return (
     <div style={{ padding: 16 }}>
       <h2>{round.label}</h2>
-      <p>Points: {round.points}</p>
 
       <ul>
         {renderRound(round, currentWord, options, handleNext)}
