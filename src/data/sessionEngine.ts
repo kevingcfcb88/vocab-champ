@@ -7,7 +7,6 @@ import { VOCABULARY } from "./words"
 
 export function createSession(config: SessionConfig): SessionState {
   return {
-    profileId: config.profileId,
     currentRoundIndex: 0,
     rounds: []
   }
