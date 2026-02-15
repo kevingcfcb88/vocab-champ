@@ -16,14 +16,6 @@ export function SessionSetup({ onStart }: Props) {
     Object.keys(ROUNDS) as RoundType[]
 )      
 
-  const toggleRound = (round: RoundType) => {
-    setEnabledRounds(prev =>
-      prev.includes(round)
-        ? prev.filter(r => r !== round)
-        : [...prev, round]
-    )
-  }
-
   const handleStart = () => {
     onStart({
       profileId,

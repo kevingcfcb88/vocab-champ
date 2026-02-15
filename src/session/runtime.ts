@@ -4,7 +4,6 @@ import type { RoundType } from "../rounds/types"
 import type { SessionConfig } from "../data/session"
 import type { VocabWord } from "../data/words"
 import type { RoundDefinition } from "../rounds/types"
-import type { RoundState } from "../rounds/runtime"
 
 
 export type SessionState = {
