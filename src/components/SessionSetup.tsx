@@ -1,5 +1,4 @@
 import { useState } from "react"
-import { profiles } from "../data/profiles"
 import { ROUNDS } from "../rounds/types"
 import type { RoundType } from "../rounds/types"
 import { VOCABULARY } from "../data/words"
@@ -10,7 +9,6 @@ type Props = {
 }
 
 export function SessionSetup({ onStart }: Props) {
-  const [profileId, setProfileId] = useState(profiles[0].id)
   const [wordsPerRound, setWordsPerRound] = useState(2)
   const [enabledRounds] = useState<RoundType[]>(
     Object.keys(ROUNDS) as RoundType[]
@@ -18,7 +16,6 @@ export function SessionSetup({ onStart }: Props) {
 
   const handleStart = () => {
     onStart({
-      profileId,
       wordsPerRound,
       enabledRounds
     })
@@ -27,23 +24,6 @@ export function SessionSetup({ onStart }: Props) {
   return (
     <div style={{ padding: 16, maxWidth: 500, margin: "0 auto" }}>
       <h1>Vocabulary Championship</h1>
-
-      {/* Profile */}
-      <label>
-        Profile
-        <select
-          value={profileId}
-          onChange={e => setProfileId(e.target.value)}
-        >
-          {profiles.map(p => (
-            <option key={p.id} value={p.id}>
-              {p.name}
-            </option>
-          ))}
-        </select>
-      </label>
-
-      <hr />
 
       {/* Words per round */}
       <label>

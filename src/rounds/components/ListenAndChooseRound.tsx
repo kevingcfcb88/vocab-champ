@@ -32,7 +32,7 @@ export function ListenAndChooseRound({ word, options, onSuccess }: Props) {
       <p> Definition: {word.hints}</p>
       <ul>
         {shuffledOptions.map(option => (
-          <li key={option}>
+          <li key={option} style={{ margin: "8px 0" }}>
             <button onClick={() => handleSelect(option)}>
               {option}
             </button>

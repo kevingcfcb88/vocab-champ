@@ -43,6 +43,7 @@ export function SentenceMasterRound({ word, onSuccess }: Props) {
 
       if (isValid) {
         setFeedback("✅ Great sentence!")
+        setSentence("")
         onSuccess()
       } else {
         setFeedback("❌ The sentence doesn’t use the word correctly")
