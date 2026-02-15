@@ -1,16 +1,28 @@
 import { useState } from "react"
 import type { VocabWord } from "../../data/words"
+import { callAI } from "../../ai/client"
+import { sentenceMasterPrompt } from "../../ai/prompts"
 
 type Props = {
   word: VocabWord
   onSuccess: () => void
 }
 
+async function checkSentence(word: string, sentence: string) {
+  const result = await callAI(
+    sentenceMasterPrompt(word, sentence)
+  )
+
+    if (!result) return false
+
+    return result.trim().toUpperCase() === "CORRECT"
+}
+
 export function SentenceMasterRound({ word, onSuccess }: Props) {
   const [sentence, setSentence] = useState("")
   const [feedback, setFeedback] = useState<string | null>(null)
 
-  const handleCheck = () => {
+  const handleCheck = async () => {
     const text = sentence.trim().toLowerCase()
     const target = word.word.toLowerCase()
 
@@ -24,8 +36,20 @@ export function SentenceMasterRound({ word, onSuccess }: Props) {
       return
     }
 
-    setFeedback("✅ Great sentence!")
-    onSuccess()
+    setFeedback("⏳ Checking...")
+
+    try {
+      const isValid = await checkSentence(word.word, text)
+
+      if (isValid) {
+        setFeedback("✅ Great sentence!")
+        onSuccess()
+      } else {
+        setFeedback("❌ The sentence doesn’t use the word correctly")
+      }
+    } catch {
+      setFeedback("⚠️ Something went wrong, try again")
+    }
   }
 
   return (
